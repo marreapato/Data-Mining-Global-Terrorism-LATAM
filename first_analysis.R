@@ -21,3 +21,8 @@ terr_df <- terr_df[,-c(47,49,50,51,53,54,100)]
 #rstudioapi::writeRStudioPreference("data_viewer_max_columns", 150L)
 terr_df <- terr_df[,-c(49,51,52,53,55,56,65,68,72,73,81,82,85,86,87,88,89)]
 
+
+View(table(terr_df$ishostkid))
+ #16669 casos de sequestro
+
+sum(terr_df$nhostkid>0,na.rm=T)
