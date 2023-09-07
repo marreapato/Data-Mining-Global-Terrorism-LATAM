@@ -25,4 +25,6 @@ terr_df <- terr_df[,-c(49,51,52,53,55,56,65,68,72,73,81,82,85,86,87,88,89)]
 View(table(terr_df$ishostkid))
  #16669 casos de sequestro
 
-sum(terr_df$nhostkid>0,na.rm=T)
+sum(terr_df$nhostkid<0,na.rm=T)
+
+terr_df$nhostkid[terr_df$nhostkid<0]
