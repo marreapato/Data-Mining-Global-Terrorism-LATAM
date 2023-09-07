@@ -15,4 +15,4 @@ avgkill=terrorism %>% group_by(region=region_txt) %>%summarise(mean=round( mean(
 avgkill
 #merica do sul tem 19846 ataques
 
-terr_df <- terrorism[,-c(1,2,4,5,6,9,11,13,19,25,26,)]
+terr_df <- terrorism[,-c(1,2,4,5,6,9,11,13,19,25,26,30,32,34,36,38,39,40,42,43,44,,46,47,48,50)]
