@@ -88,3 +88,5 @@ terror_selected_comp <- sample_n(terror_selected_comp, 10000-nrow(terror_selecte
 terror_selected <- rbind(terror_selected_comp,terror_selected_target)
 
 table(terror_selected$success)/nrow(terror_selected)#87,21% of success rate
+
+#KDD and Data Mining
