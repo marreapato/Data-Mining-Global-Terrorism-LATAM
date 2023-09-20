@@ -20,6 +20,14 @@ terrorism <- terrorism %>% filter(region_txt=="South America")#Keep South Americ
 
 terror_selected <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success)
 terror_selected <- terror_selected %>% filter(iday>0)#filtering unknown dates
+terror_selected <- terror_selected %>% filter(provstate!="Unknown")#filtering unknown provinvies
+terror_selected <- terror_selected %>% filter(city!="Unknown")#filtering unknown cities
+
+#looking for NAs
+sum(is.na(terror_selected$city))
+sum(is.na(terror_selected$provstate))
+#
+table(terror_selected$success)/10000#12,67% in the target class
 
 #padding string to the size of 2 (adding 0 to the left of size 1)
 terror_selected$iday <- str_pad(terror_selected$iday,2, pad = "0")
@@ -27,5 +35,8 @@ terror_selected$imonth <- str_pad(terror_selected$imonth,2, pad = "0")
 
 terror_selected$date <- paste(terror_selected$iyear,"-",terror_selected$imonth,"-",terror_selected$iday,sep="")
 
-sum(is.na(terror_selected$iday))
-as.Date(terror_selected$date)
+terror_selected$date <- as.Date(terror_selected$date)
+
+sum(is.na(terror_selected$date))#no NAs
+
+#preprocessed data
