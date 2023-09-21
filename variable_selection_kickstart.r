@@ -181,7 +181,7 @@ unique(terror_selected$country_txt)
 ?WDI
 
 bmundial<- WDI(
-  country = c("GF","KNA",'CUB'),
+  country = iso_codes <- c("ARG", "BOL", "BRA", "CHL", "COL", "CRI", "CUB", "DOM", "ECU", "SLV", "GTM", "HND", "MEX", "NIC", "PAN", "PRY", "PER", "URY", "VEN"),
   #indicator = c("SP.RUR.TOTL","SP.URB.TOTL","SP.POP.TOTL","FP.CPI.TOTL.ZG","NE.TRD.GNFS.ZS","EN.ATM.CO2E.KT"),
   start = 1970,
   end = 2021,
