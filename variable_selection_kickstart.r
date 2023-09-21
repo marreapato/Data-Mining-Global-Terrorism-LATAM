@@ -93,3 +93,4 @@ table(terror_selected$success)/nrow(terror_selected)#87,20% of success rate
 
 weekdays(terror_selected$date)#change to english - https://stackoverflow.com/questions/17031002/get-weekdays-in-english-in-r
 week(terror_selected$date)#how many weeks passed
+#is it holiday https://pypi.org/project/holidays/
