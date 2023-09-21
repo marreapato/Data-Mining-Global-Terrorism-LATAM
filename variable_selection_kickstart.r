@@ -49,7 +49,7 @@ df_terrorism2021 <- read_xlsx("C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Tr
 #filter only labels that are terrorist attack (no doubt)
 
 terrorism <- df_terrorism2021 %>% filter(doubtterr!=1)#remove those with doubt
-terrorism <- terrorism %>% filter(region_txt=="South America"|region_txt=="Central America & Caribbean")#Keep South America
+terrorism <- terrorism %>% filter(region_txt=="South America")#Keep South America
 
 #variable selection
 
