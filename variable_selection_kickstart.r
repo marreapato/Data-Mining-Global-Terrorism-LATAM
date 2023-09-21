@@ -14,7 +14,7 @@ terrorism <- terror
 #filter only labels that are terrorist attack (no doubt)
 
 terrorism <- terrorism %>% filter(doubtterr!=1)#remove those with doubt
-terrorism <- terrorism %>% filter(region_txt=="South America")#Keep South America
+terrorism <- terrorism %>% filter(region_txt=="South America"|region_txt=="Central America & Caribbean")#Keep South America
 
 #variable selection
 
@@ -49,7 +49,7 @@ df_terrorism2021 <- read_xlsx("C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Tr
 #filter only labels that are terrorist attack (no doubt)
 
 terrorism <- df_terrorism2021 %>% filter(doubtterr!=1)#remove those with doubt
-terrorism <- terrorism %>% filter(region_txt=="South America")#Keep South America
+terrorism <- terrorism %>% filter(region_txt=="South America"|region_txt=="Central America & Caribbean")#Keep South America
 
 #variable selection
 
@@ -109,12 +109,26 @@ library(WDI)     # for World Bank goodness
 library(GetBCBData)
 library(OECD)
 
+library(countrycode)
+
+# List of countries
+countries <- c(
+  "Peru", "Colombia", "Chile", "Argentina", "Venezuela",
+  "Ecuador", "Brazil", "Paraguay", "Guyana", "Bolivia",
+  "Suriname", "Uruguay", "French Guiana"
+)
+
+# Convert country names to ISO-3 codes
+iso3_codes <- countrycode(countries, "country.name", "iso3c")
+
+# Print the ISO-3 codes array
+iso3_codes
 #world bank data
 unique(terror_selected$country_txt)
 ?WDI
 
 bmundial<- WDI(
-  country = c("BR","BOL"),
+  country = c("BR","KNA",'CUB'),
   #indicator = c("SP.RUR.TOTL","SP.URB.TOTL","SP.POP.TOTL","FP.CPI.TOTL.ZG","NE.TRD.GNFS.ZS","EN.ATM.CO2E.KT"),
   start = 1970,
   end = 2021,
