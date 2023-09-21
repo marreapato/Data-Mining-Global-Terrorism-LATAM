@@ -49,7 +49,7 @@ df_terrorism2021 <- read_xlsx("C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Tr
 #filter only labels that are terrorist attack (no doubt)
 
 terrorism <- df_terrorism2021 %>% filter(doubtterr!=1)#remove those with doubt
-terrorism <- terrorism %>% filter(region_txt=="South America")#Keep South America
+terrorism <- terrorism %>% filter(region_txt=="South America"|region_txt=="Central America & Caribbean")#Keep South America
 
 #variable selection
 
@@ -87,6 +87,9 @@ terror_selected_comp <- sample_n(terror_selected_comp, 10000-nrow(terror_selecte
 
 terror_selected <- rbind(terror_selected_comp,terror_selected_target)
 
-table(terror_selected$success)/nrow(terror_selected)#87,21% of success rate
+table(terror_selected$success)/nrow(terror_selected)#87,20% of success rate
 
 #KDD and Data Mining
+
+weekdays(terror_selected$date)#change to english - https://stackoverflow.com/questions/17031002/get-weekdays-in-english-in-r
+week(terror_selected$date)#how many weeks passed
