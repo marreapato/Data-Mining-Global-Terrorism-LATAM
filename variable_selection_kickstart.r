@@ -15,7 +15,26 @@ terrorism <- terror
 
 terrorism <- terrorism %>% filter(doubtterr!=1)#remove those with doubt
 terrorism <- terrorism %>% filter(region_txt=="South America"|region_txt=="Central America & Caribbean")#Keep South America
-
+terrorism <- terrorism %>%
+  filter(country_txt == "Argentina" |
+           country_txt == "Bolivia" |
+           country_txt == "Brazil" |
+           country_txt == "Chile" |
+           country_txt == "Colombia" |
+           country_txt == "Costa Rica" |
+           country_txt == "Cuba" |
+           country_txt == "Dominican Republic" |
+           country_txt == "Ecuador" |
+           country_txt == "El Salvador" |
+           country_txt == "Guatemala" |
+           country_txt == "Honduras" |
+           country_txt == "Mexico" |
+           country_txt == "Nicaragua" |
+           country_txt == "Panama" |
+           country_txt == "Paraguay" |
+           country_txt == "Peru" |
+           country_txt == "Uruguay" |
+           country_txt == "Venezuela")
 #variable selection
 
 terror_selected <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success)
@@ -50,6 +69,26 @@ df_terrorism2021 <- read_xlsx("C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Tr
 
 terrorism <- df_terrorism2021 %>% filter(doubtterr!=1)#remove those with doubt
 terrorism <- terrorism %>% filter(region_txt=="South America"|region_txt=="Central America & Caribbean")#Keep South America
+terrorism <- terrorism %>%
+  filter(country_txt == "Argentina" |
+           country_txt == "Bolivia" |
+           country_txt == "Brazil" |
+           country_txt == "Chile" |
+           country_txt == "Colombia" |
+           country_txt == "Costa Rica" |
+           country_txt == "Cuba" |
+           country_txt == "Dominican Republic" |
+           country_txt == "Ecuador" |
+           country_txt == "El Salvador" |
+           country_txt == "Guatemala" |
+           country_txt == "Honduras" |
+           country_txt == "Mexico" |
+           country_txt == "Nicaragua" |
+           country_txt == "Panama" |
+           country_txt == "Paraguay" |
+           country_txt == "Peru" |
+           country_txt == "Uruguay" |
+           country_txt == "Venezuela")
 
 #variable selection
 
@@ -104,6 +143,20 @@ cor(df$week_of_year,df$total,method = "spearman")
 
 plot(df$week_of_year,df$total)
 
+
+df <- terror_selected %>% filter(success==1) %>% group_by(imonth) %>% summarise(total=n())
+
+cor(as.numeric(df$imonth),df$total,method = "spearman")
+
+plot(as.numeric(df$imonth),df$total)
+
+
+df <- terror_selected %>% filter(success==1) %>% group_by(iday) %>% summarise(total=n())
+
+cor(as.numeric(df$iday),df$total,method = "spearman")
+
+plot(as.numeric(df$iday),df$total)
+
 ###
 library(WDI)     # for World Bank goodness
 library(GetBCBData)
@@ -128,7 +181,7 @@ unique(terror_selected$country_txt)
 ?WDI
 
 bmundial<- WDI(
-  country = c("BR","KNA",'CUB'),
+  country = c("GF","KNA",'CUB'),
   #indicator = c("SP.RUR.TOTL","SP.URB.TOTL","SP.POP.TOTL","FP.CPI.TOTL.ZG","NE.TRD.GNFS.ZS","EN.ATM.CO2E.KT"),
   start = 1970,
   end = 2021,
