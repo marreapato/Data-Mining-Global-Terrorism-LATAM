@@ -135,59 +135,11 @@ table(terror_selected$country_txt)
 
 terror_selected$week_of_year <- week(terror_selected$date)#how many weeks passed
 #is it holiday https://pypi.org/project/holidays/
-#terror_selected$weekday <-weekdays(terror_selected$date)#change to english - https://stackoverflow.com/questions/17031002/get-weekdays-in-english-in-r
+#terror_selected$weekday <-weekdays(terror_selected$date)
+#change to english - https://stackoverflow.com/questions/17031002/get-weekdays-in-english-in-r
+terror_selected$weekday <-weekdays(terror_selected$date)
 
-df <- terror_selected %>% filter(success==1) %>% group_by(week_of_year) %>% summarise(total=n())
+Sys.setlocale("LC_TIME", "en_US.UTF-8")
+Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
 
-cor(df$week_of_year,df$total,method = "spearman")
-
-plot(df$week_of_year,df$total)
-
-
-df <- terror_selected %>% filter(success==1) %>% group_by(imonth) %>% summarise(total=n())
-
-cor(as.numeric(df$imonth),df$total,method = "spearman")
-
-plot(as.numeric(df$imonth),df$total)
-
-
-df <- terror_selected %>% filter(success==1) %>% group_by(iday) %>% summarise(total=n())
-
-cor(as.numeric(df$iday),df$total,method = "spearman")
-
-plot(as.numeric(df$iday),df$total)
-
-###
-library(WDI)     # for World Bank goodness
-library(GetBCBData)
-library(OECD)
-
-library(countrycode)
-
-# List of countries
-countries <- c(
-  "Peru", "Colombia", "Chile", "Argentina", "Venezuela",
-  "Ecuador", "Brazil", "Paraguay", "Guyana", "Bolivia",
-  "Suriname", "Uruguay", "French Guiana"
-)
-
-# Convert country names to ISO-3 codes
-iso3_codes <- countrycode(countries, "country.name", "iso3c")
-
-# Print the ISO-3 codes array
-iso3_codes
-#world bank data
-unique(terror_selected$country_txt)
-?WDI
-
-bmundial<- WDI(
-  country = iso_codes <- c("ARG", "BOL", "BRA", "CHL", "COL", "CRI", "CUB", "DOM", "ECU", "SLV", "GTM", "HND", "MEX", "NIC", "PAN", "PRY", "PER", "URY", "VEN"),
-  #indicator = c("SP.RUR.TOTL","SP.URB.TOTL","SP.POP.TOTL","FP.CPI.TOTL.ZG","NE.TRD.GNFS.ZS","EN.ATM.CO2E.KT"),
-  start = 1970,
-  end = 2021,
-  extra = TRUE,
-  cache = NULL,
-  latest = NULL,
-  language = "en"
-)
 
