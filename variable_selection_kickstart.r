@@ -37,7 +37,7 @@ terrorism <- terrorism %>%
            country_txt == "Venezuela")
 #variable selection
 
-terror_selected <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success)
+terror_selected <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success,nkill)
 terror_selected <- terror_selected %>% filter(iday>0)#filtering unknown dates
 terror_selected <- terror_selected %>% filter(provstate!="Unknown")#filtering unknown provinvies
 terror_selected <- terror_selected %>% filter(city!="Unknown")#filtering unknown cities
@@ -92,7 +92,7 @@ terrorism <- terrorism %>%
 
 #variable selection
 
-terror_selected2 <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success)
+terror_selected2 <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success,nkill)
 terror_selected2 <- terror_selected2 %>% filter(iday>0)#filtering unknown dates
 terror_selected2 <- terror_selected2 %>% filter(provstate!="Unknown")#filtering unknown provinvies
 terror_selected2 <- terror_selected2 %>% filter(city!="Unknown")#filtering unknown cities
@@ -137,9 +137,26 @@ terror_selected$week_of_year <- week(terror_selected$date)#how many weeks passed
 #is it holiday https://pypi.org/project/holidays/
 #terror_selected$weekday <-weekdays(terror_selected$date)
 #change to english - https://stackoverflow.com/questions/17031002/get-weekdays-in-english-in-r
+Sys.setlocale("LC_TIME", "en_US.UTF-8")
 terror_selected$weekday <-weekdays(terror_selected$date)
 
-Sys.setlocale("LC_TIME", "en_US.UTF-8")
+
 Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
 
 
+terror_selected$city <- tolower(terror_selected$city)
+terror_selected$city <- gsub("district","",terror_selected$city)
+
+terror_selected_filtered <- terror_selected %>%
+  arrange(city, date) %>%  # Sort by Group and Date
+  group_by(city) %>%
+  mutate(TimeDifference_city_event = date - lag(date))
+
+terror_selected_filtered$TimeDifference_city_event[is.na(terror_selected_filtered$TimeDifference_city_event)] <- terror_selected_filtered$date[is.na(terror_selected_filtered$TimeDifference_city_event)]-as.Date("1970-01-01")
+
+###############
+
+terror_selected_filtered <- terror_selected_filtered %>%
+  arrange(country_txt, date) %>%  # Sort by Group and Date
+  group_by(country_txt) %>%
+  mutate(TimeDifference_country_event = date - lag(date))
