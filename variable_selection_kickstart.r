@@ -164,6 +164,14 @@ terror_selected_filtered <- terror_selected_filtered %>%
 
 terror_selected_filtered$TimeDifference_country_event[is.na(terror_selected_filtered$TimeDifference_country_event)] <- terror_selected_filtered$date[is.na(terror_selected_filtered$TimeDifference_country_event)]-as.Date("1970-01-01")
 
+terror_selected_filtered$provstate <- tolower(terror_selected_filtered$provstate)
+
+View(table(terror_selected_filtered$provstate))
+
+gsub('-',' ',terror_selected_filtered$provstate)
+gsub('ciudade de ','',terror_selected_filtered$provstate)
+gsub('morazán','morazan',terror_selected_filtered$provstate)
+gsub('maranhaos','maranhao',terror_selected_filtered$provstate)
 
 library(googlesheets4)
 gs4_deauth()
@@ -175,5 +183,4 @@ dados_amvox$TimeDifference_city_event <- as.numeric(dados_amvox$TimeDifference_c
 dados_amvox$TimeDifference_country_event <- as.numeric(dados_amvox$TimeDifference_country_event)
 
 write_sheet(dados_amvox,"https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit?usp=sharing",sheet = "dados")
-
 
