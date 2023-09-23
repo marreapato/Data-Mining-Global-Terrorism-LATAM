@@ -168,10 +168,10 @@ terror_selected_filtered$provstate <- tolower(terror_selected_filtered$provstate
 
 View(table(terror_selected_filtered$provstate))
 
-gsub('-',' ',terror_selected_filtered$provstate)
-gsub('ciudade de ','',terror_selected_filtered$provstate)
-gsub('morazán','morazan',terror_selected_filtered$provstate)
-gsub('maranhaos','maranhao',terror_selected_filtered$provstate)
+terror_selected_filtered$provstate <- gsub('-',' ',terror_selected_filtered$provstate)
+terror_selected_filtered$provstate <- gsub('ciudade de ','',terror_selected_filtered$provstate)
+terror_selected_filtered$provstate <- gsub('morazán','morazan',terror_selected_filtered$provstate)
+terror_selected_filtered$provstate <- gsub('maranhaos','maranhao',terror_selected_filtered$provstate)
 
 library(googlesheets4)
 gs4_deauth()
