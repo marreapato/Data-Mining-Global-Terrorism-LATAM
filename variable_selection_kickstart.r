@@ -8,7 +8,16 @@ library(stringr)#string manipulation
 #calling data
 terror <- fread("C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\TrabalhoDM\\globalterrorismdb_0522dist.csv")
 #
-colnames(terror)
+
+#library(googlesheets4)
+#gs4_deauth()
+
+#gs4_auth()
+
+#write_sheet(as.data.frame(table(colnames(terror))),"https://docs.google.com/spreadsheets/d/1b76JLiXEMQjBxDfiCXPlvhMe9Bajkdmximw1nQHhFHw/edit?usp=sharing",sheet = "dados")
+
+
+
 terrorism <- terror
 
 #filter only labels that are terrorist attack (no doubt)
