@@ -160,3 +160,18 @@ terror_selected_filtered <- terror_selected_filtered %>%
   arrange(country_txt, date) %>%  # Sort by Group and Date
   group_by(country_txt) %>%
   mutate(TimeDifference_country_event = date - lag(date))
+
+
+terror_selected_filtered$TimeDifference_country_event[is.na(terror_selected_filtered$TimeDifference_country_event)] <- terror_selected_filtered$date[is.na(terror_selected_filtered$TimeDifference_country_event)]-as.Date("1970-01-01")
+
+
+library(googlesheets4)
+gs4_deauth()
+
+gs4_auth()
+
+dados_amvox <- terror_selected_filtered
+
+write_sheet(dados_amvox,"https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit?usp=sharing",sheet = "dados")
+
+
