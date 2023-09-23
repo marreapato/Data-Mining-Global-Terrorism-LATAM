@@ -37,7 +37,7 @@ terrorism <- terrorism %>%
            country_txt == "Venezuela")
 #variable selection
 
-terror_selected <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success,nkill)
+terror_selected <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success)
 terror_selected <- terror_selected %>% filter(iday>0)#filtering unknown dates
 terror_selected <- terror_selected %>% filter(provstate!="Unknown")#filtering unknown provinvies
 terror_selected <- terror_selected %>% filter(city!="Unknown")#filtering unknown cities
@@ -92,7 +92,7 @@ terrorism <- terrorism %>%
 
 #variable selection
 
-terror_selected2 <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success,nkill)
+terror_selected2 <- terrorism %>% select(iyear,imonth,iday,country_txt,provstate,city,success)
 terror_selected2 <- terror_selected2 %>% filter(iday>0)#filtering unknown dates
 terror_selected2 <- terror_selected2 %>% filter(provstate!="Unknown")#filtering unknown provinvies
 terror_selected2 <- terror_selected2 %>% filter(city!="Unknown")#filtering unknown cities
