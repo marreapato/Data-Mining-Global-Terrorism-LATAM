@@ -193,6 +193,7 @@ terror_selected_filtered <- terror_selected_filtered %>%
 
 terror_selected_filtered$TimeDifference_province_event[is.na(terror_selected_filtered$TimeDifference_province_event)] <- terror_selected_filtered$date[is.na(terror_selected_filtered$TimeDifference_province_event)]-as.Date("1970-01-01")
 
+
 ######################################
 
 cor(as.numeric(terror_selected_filtered$TimeDifference_city_event),as.numeric(terror_selected_filtered$TimeDifference_province_event),method = "spearman")
@@ -202,7 +203,7 @@ plot(as.numeric(terror_selected_filtered$TimeDifference_city_event),as.numeric(t
 table(terror_selected_filtered$success)
 ###
 library(WDI)     # for World Bank goodness
-library(GetBCBData)
+library(wbstats)
 library(OECD)
 
 library(countrycode)
@@ -225,18 +226,11 @@ unique(terror_selected$country_txt)
 ###
 
 sera=WDIsearch(string='gdp', field='name', cache=NULL)
+sera=wbsearch(pattern="migrant")
 
+#populationl growth
+gdp_data <- wb_data(country=iso3_codes, indicator = "SP.POP.GROW",start_date = 1970,end_date = 2021)
 
-bmundial<- WDI(
-  country = c(iso3_codes),
-indicator = c("6.0.GDPpc_constant"),
-  start = 1970,
-  end = 2021,
-  extra = TRUE,
-  cache = NULL,
-  latest = NULL,
-  language = "en"
-)
 
 #is it the capital city of the country?
 
