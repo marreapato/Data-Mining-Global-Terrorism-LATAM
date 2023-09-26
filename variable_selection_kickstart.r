@@ -201,6 +201,7 @@ plot(as.numeric(terror_selected_filtered$TimeDifference_city_event),as.numeric(t
 #is it the capital city of the country?
 
 View(table(terror_selected_filtered$city))
+View(table(terror_selected_filtered$country_txt))
 
 library(googlesheets4)
 gs4_deauth()
@@ -210,5 +211,6 @@ gs4_auth()
 dados_amvox <- terror_selected_filtered
 dados_amvox$TimeDifference_city_event <- as.numeric(dados_amvox$TimeDifference_city_event)
 dados_amvox$TimeDifference_country_event <- as.numeric(dados_amvox$TimeDifference_country_event)
+dados_amvox$TimeDifference_province_event <- as.numeric(dados_amvox$TimeDifference_province_event)
 
 write_sheet(dados_amvox,"https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit?usp=sharing",sheet = "dados")
