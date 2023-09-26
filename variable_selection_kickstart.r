@@ -224,9 +224,12 @@ iso3_codes
 unique(terror_selected$country_txt)
 ###
 
+sera=WDIsearch(string='gdp', field='name', cache=NULL)
+
+
 bmundial<- WDI(
   country = c(iso3_codes),
-  #indicator = c("SP.RUR.TOTL","SP.URB.TOTL","SP.POP.TOTL","FP.CPI.TOTL.ZG","NE.TRD.GNFS.ZS","EN.ATM.CO2E.KT"),
+indicator = c("6.0.GDPpc_constant"),
   start = 1970,
   end = 2021,
   extra = TRUE,
