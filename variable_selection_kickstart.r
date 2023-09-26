@@ -23,7 +23,7 @@ terrorism <- terror
 #filter only labels that are terrorist attack (no doubt)
 
 terrorism <- terrorism %>% filter(doubtterr!=1)#remove those with doubt
-terrorism <- terrorism %>% filter(region_txt=="South America"|region_txt=="Central America & Caribbean")#Keep South America
+terrorism <- terrorism# %>% filter(region_txt=="South America"|region_txt=="Central America & Caribbean")#Keep South America
 terrorism <- terrorism %>%
   filter(country_txt == "Argentina" |
            country_txt == "Bolivia" |
@@ -77,7 +77,7 @@ df_terrorism2021 <- read_xlsx("C:\\Users\\lucas\\OneDrive\\Área de Trabalho\\Tr
 #filter only labels that are terrorist attack (no doubt)
 
 terrorism <- df_terrorism2021 %>% filter(doubtterr!=1)#remove those with doubt
-terrorism <- terrorism %>% filter(region_txt=="South America"|region_txt=="Central America & Caribbean")#Keep South America
+terrorism <- terrorism#Keep South America
 terrorism <- terrorism %>%
   filter(country_txt == "Argentina" |
            country_txt == "Bolivia" |
@@ -198,6 +198,43 @@ terror_selected_filtered$TimeDifference_province_event[is.na(terror_selected_fil
 cor(as.numeric(terror_selected_filtered$TimeDifference_city_event),as.numeric(terror_selected_filtered$TimeDifference_province_event),method = "spearman")
 plot(as.numeric(terror_selected_filtered$TimeDifference_city_event),as.numeric(terror_selected_filtered$TimeDifference_province_event))
 
+#more variables
+table(terror_selected_filtered$success)
+###
+library(WDI)     # for World Bank goodness
+library(GetBCBData)
+library(OECD)
+
+library(countrycode)
+
+# List of countries
+countries <- c(
+  "Peru", "Colombia", "Chile", "Argentina", "Venezuela",
+  "Ecuador", "Brazil", "Paraguay", "Bolivia",
+  "Uruguay", "Cuba","Costa Rica",'Guatemala',"Mexico","El Salvador",
+"Honduras","Nicaragua","Dominican Republic","Panama"
+)
+
+# Convert country names to ISO-3 codes
+iso3_codes <- countrycode(countries, "country.name", "iso3c")
+
+# Print the ISO-3 codes array
+iso3_codes
+#world bank data
+unique(terror_selected$country_txt)
+###
+
+bmundial<- WDI(
+  country = c(iso3_codes),
+  #indicator = c("SP.RUR.TOTL","SP.URB.TOTL","SP.POP.TOTL","FP.CPI.TOTL.ZG","NE.TRD.GNFS.ZS","EN.ATM.CO2E.KT"),
+  start = 1970,
+  end = 2021,
+  extra = TRUE,
+  cache = NULL,
+  latest = NULL,
+  language = "en"
+)
+
 #is it the capital city of the country?
 
 View(table(terror_selected_filtered$city))
@@ -212,5 +249,6 @@ dados_amvox <- terror_selected_filtered
 dados_amvox$TimeDifference_city_event <- as.numeric(dados_amvox$TimeDifference_city_event)
 dados_amvox$TimeDifference_country_event <- as.numeric(dados_amvox$TimeDifference_country_event)
 dados_amvox$TimeDifference_province_event <- as.numeric(dados_amvox$TimeDifference_province_event)
+
 
 write_sheet(dados_amvox,"https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit?usp=sharing",sheet = "dados")
