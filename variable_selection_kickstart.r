@@ -213,7 +213,7 @@ countries <- c(
   "Peru", "Colombia", "Chile", "Argentina", "Venezuela",
   "Ecuador", "Brazil", "Paraguay", "Bolivia",
   "Uruguay", "Cuba","Costa Rica",'Guatemala',"Mexico","El Salvador",
-"Honduras","Nicaragua","Dominican Republic","Panama"
+  "Honduras","Nicaragua","Dominican Republic","Panama"
 )
 
 # Convert country names to ISO-3 codes
@@ -224,25 +224,26 @@ iso3_codes
 #world bank data
 unique(terror_selected$country_txt)
 ###
-
-sera=WDIsearch(string='gdp', field='name', cache=NULL)
-sera=wbsearch(pattern="migrant")
-
 #populationl growth
 gdp_data <- wb_data(country=iso3_codes, indicator = "SP.POP.GROW",start_date = 1970,end_date = 2021)
 
+gdp_data$country <- tolower(gdp_data$country)
 
-#is it the capital city of the country?
+gdp_data_sel <- gdp_data %>% select(iso3_codes=iso3c,SP.POP.GROW,iyear=date)
 
-View(table(terror_selected_filtered$city))
-View(table(terror_selected_filtered$country_txt))
+terror_selected_filtered$iso3_codes <- countrycode(terror_selected_filtered$country_txt, "country.name", "iso3c")
+
+terror_selected_filtered_plus=left_join(terror_selected_filtered,gdp_data_sel,by=c("iyear","iso3_codes"))
+
+sum(is.na(terror_selected_filtered_plus$SP.POP.GROW))#no na
+
 
 library(googlesheets4)
 gs4_deauth()
 
 gs4_auth()
 
-dados_amvox <- terror_selected_filtered
+dados_amvox <- terror_selected_filtered_plus
 dados_amvox$TimeDifference_city_event <- as.numeric(dados_amvox$TimeDifference_city_event)
 dados_amvox$TimeDifference_country_event <- as.numeric(dados_amvox$TimeDifference_country_event)
 dados_amvox$TimeDifference_province_event <- as.numeric(dados_amvox$TimeDifference_province_event)
