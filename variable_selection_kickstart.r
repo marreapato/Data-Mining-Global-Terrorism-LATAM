@@ -224,6 +224,7 @@ iso3_codes
 #world bank data
 unique(terror_selected$country_txt)
 ###
+?wb_data
 #populationl growth
 gdp_data <- wb_data(country=iso3_codes, indicator = "SP.POP.GROW",start_date = 1970,end_date = 2021)
 
@@ -237,13 +238,13 @@ terror_selected_filtered_plus=left_join(terror_selected_filtered,gdp_data_sel,by
 
 sum(is.na(terror_selected_filtered_plus$SP.POP.GROW))#no na
 
-gdp_data <- wb_data(country="world", indicator = "SP.POP.GROW",start_date = 1970,end_date = 2021)
+gdp_data <- wb_data(country="LCN", indicator = "SP.POP.GROW",start_date = 1970,end_date = 2021)#REGIONS ONLY
 
 gdp_data_sel <- gdp_data %>% select(world_grow=SP.POP.GROW,iyear=date)
 
 terror_selected_filtered_plus=left_join(terror_selected_filtered_plus,gdp_data_sel,by=c("iyear"))
 
-terror_selected_filtered_plus$popgrow_higher_than_world <- if_else(terror_selected_filtered_plus$SP.POP.GROW>terror_selected_filtered_plus$world_grow,1,0)
+terror_selected_filtered_plus$popgrow_higher_than_latam <- if_else(terror_selected_filtered_plus$SP.POP.GROW>terror_selected_filtered_plus$world_grow,1,0)
 
 terror_selected_filtered_plus <- terror_selected_filtered_plus %>% select(!world_grow)
 library(googlesheets4)
