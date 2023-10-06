@@ -247,6 +247,20 @@ terror_selected_filtered_plus=left_join(terror_selected_filtered_plus,gdp_data_s
 terror_selected_filtered_plus$popgrow_higher_than_latam <- if_else(terror_selected_filtered_plus$SP.POP.GROW>terror_selected_filtered_plus$world_grow,1,0)
 
 terror_selected_filtered_plus <- terror_selected_filtered_plus %>% select(!world_grow)
+
+#############
+gdp_data <- wb_data(country=iso3_codes, indicator = "SP.POP.TOTL",start_date = 1970,end_date = 2021)
+
+gdp_data$country <- tolower(gdp_data$country)
+
+gdp_data_sel <- gdp_data %>% select(iso3_codes=iso3c,country_population=SP.POP.TOTL,iyear=date)
+
+terror_selected_filtered_plus=left_join(terror_selected_filtered_plus,gdp_data_sel,by=c("iyear"))
+
+#
+dfind=wb_indicators()
+
+
 library(googlesheets4)
 gs4_deauth()
 
