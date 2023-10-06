@@ -255,10 +255,10 @@ gdp_data$country <- tolower(gdp_data$country)
 
 gdp_data_sel <- gdp_data %>% select(iso3_codes=iso3c,country_population=SP.POP.TOTL,iyear=date)
 
-terror_selected_filtered_plus=left_join(terror_selected_filtered_plus,gdp_data_sel,by=c("iyear"))
+terror_selected_filtered_plus=left_join(terror_selected_filtered_plus,gdp_data_sel,by=c("iyear","iso3_codes"))
 
 #
-dfind=wb_indicators()#
+dfind=wb_indicators()
 
 
 library(googlesheets4)
