@@ -187,7 +187,7 @@ terror_selected_filtered$provstate <- gsub('maranhaos','maranhao',terror_selecte
 
 terror_selected_filtered <- terror_selected_filtered %>%
   arrange(provstate, date) %>%  # Sort by Group and Date
-  group_by(country_txt) %>%
+  group_by(provstate) %>%
   mutate(TimeDifference_province_event = date - lag(date))
 
 
