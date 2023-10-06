@@ -258,7 +258,7 @@ gdp_data_sel <- gdp_data %>% select(iso3_codes=iso3c,country_population=SP.POP.T
 terror_selected_filtered_plus=left_join(terror_selected_filtered_plus,gdp_data_sel,by=c("iyear"))
 
 #
-dfind=wb_indicators()
+dfind=wb_indicators()#
 
 
 library(googlesheets4)
