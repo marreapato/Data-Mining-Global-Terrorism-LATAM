@@ -152,3 +152,10 @@ dados_amvox <- terror_selected %>% group_by(country_txt,iyear) %>% summarise(tot
 table(dados_amvox$country_txt)
 
 write_sheet(dados_amvox,"https://docs.google.com/spreadsheets/d/1aXMHsjPRV39VNZNo6kS6jU3FkGrysVV_sukEQz_1Cso/edit#gid=0",sheet = "Presidente Militar?")
+
+
+
+dados_amvox <- terror_selected %>% group_by(country_txt,city) %>% summarise(total=n())
+table(dados_amvox$country_txt)
+
+write_sheet(dados_amvox,"https://docs.google.com/spreadsheets/d/1aXMHsjPRV39VNZNo6kS6jU3FkGrysVV_sukEQz_1Cso/edit#gid=0",sheet = "Cidades Grandes e Capitais")
