@@ -142,7 +142,7 @@ table(terror_selected$country_txt)
 
 #KDD and Data Mining
 
-terror_selected$week_of_year <- week(terror_selected$date)#how many weeks passed
+#terror_selected$week_of_year <- week(terror_selected$date)#how many weeks passed
 #is it holiday https://pypi.org/project/holidays/
 #terror_selected$weekday <-weekdays(terror_selected$date)
 #change to english - https://stackoverflow.com/questions/17031002/get-weekdays-in-english-in-r
@@ -151,9 +151,35 @@ terror_selected$weekday <-weekdays(terror_selected$date)
 
 
 Sys.setlocale("LC_TIME", "pt_BR.UTF-8")
+###############################################################33
 
+library(googlesheets4)
+gs4_deauth()
+
+gs4_auth()
+
+(chfgvrn <- read_sheet("https://docs.google.com/spreadsheets/d/1aXMHsjPRV39VNZNo6kS6jU3FkGrysVV_sukEQz_1Cso/edit#gid=0",sheet = "Chefe de Governo Militar?"))
+(elec <- read_sheet("https://docs.google.com/spreadsheets/d/1aXMHsjPRV39VNZNo6kS6jU3FkGrysVV_sukEQz_1Cso/edit#gid=0",sheet = "TeveEleicaoNacional? (Direta & Chefe de Estado)"))
+(cidadecap <- read_sheet("https://docs.google.com/spreadsheets/d/1aXMHsjPRV39VNZNo6kS6jU3FkGrysVV_sukEQz_1Cso/edit#gid=0",sheet = "Cidades Grandes e Capitais"))
+(feriado <- read_sheet("https://docs.google.com/spreadsheets/d/1aXMHsjPRV39VNZNo6kS6jU3FkGrysVV_sukEQz_1Cso/edit#gid=0",sheet = "feriados"))
+
+
+chfgvrn_sel <- chfgvrn %>% select(country_txt,iyear,ChefedeGovernoMilitar)
+
+terror_selected=left_join(terror_selected,chfgvrn_sel,by=c("iyear","country_txt"))
+
+
+elec_sel <- elec %>% select(country_txt,iyear,eleicaonacionaldireta)
+
+terror_selected=left_join(terror_selected,elec_sel,by=c("iyear","country_txt"))
+
+cidadecap_sel <- cidadecap %>% select(country_txt,CidadeOuCapital,city)
+
+terror_selected=left_join(terror_selected,cidadecap_sel,by=c("country_txt","city"))
+#######################33333
 
 terror_selected$city <- tolower(terror_selected$city)
+
 terror_selected$city <- gsub("district","",terror_selected$city)
 
 terror_selected_filtered <- terror_selected %>%
@@ -221,10 +247,23 @@ iso3_codes <- countrycode(countries, "country.name", "iso3c")
 
 # Print the ISO-3 codes array
 iso3_codes
-#world bank data
-unique(terror_selected$country_txt)
+
+# Convert country names to ISO-3 codes
+iso2_codes <- countrycode(countries, "country.name", "iso2c")
+iso2_codes
+
+terror_selected_filtered$iso2c <- countrycode(terror_selected_filtered$country_txt, "country.name", "iso2c")
+
+feriado_sel <- feriado %>% select(date=startDate,iso2c=Country,Type) %>% filter(Type=="public")
+
+terror_selected_filtered$id <- seq(1,nrow(terror_selected_filtered))
+  
+terror_selected_filteredmk=left_join(terror_selected_filtered,feriado_sel,by=c("iso2c","date"))
+
+terror_selected_filtered <- terror_selected_filteredmk %>% distinct(id, .keep_all = TRUE)
+
 ###
-?wb_data
+#?wb_data
 #populationl growth
 gdp_data <- wb_data(country=iso3_codes, indicator = "SP.POP.GROW",start_date = 1970,end_date = 2021)
 
@@ -257,15 +296,12 @@ gdp_data_sel <- gdp_data %>% select(iso3_codes=iso3c,country_population=SP.POP.T
 
 terror_selected_filtered_plus=left_join(terror_selected_filtered_plus,gdp_data_sel,by=c("iyear","iso3_codes"))
 
+terror_selected_filtered_plus$Type[!is.na(terror_selected_filtered_plus$Type)] <- 1
+terror_selected_filtered_plus$Type[is.na(terror_selected_filtered_plus$Type)] <- 0
 #
-dfind=wb_indicators()
-
-
-library(googlesheets4)
-gs4_deauth()
-
-gs4_auth()
-
+#dfind=wb_indicators()
+terror_selected_filtered_plus <- terror_selected_filtered_plus %>% select(!c(id,iyear,imonth,iday,iso2c,iso3_codes))
+##################################3
 dados_amvox <- terror_selected_filtered_plus
 dados_amvox$TimeDifference_city_event <- as.numeric(dados_amvox$TimeDifference_city_event)
 dados_amvox$TimeDifference_country_event <- as.numeric(dados_amvox$TimeDifference_country_event)
