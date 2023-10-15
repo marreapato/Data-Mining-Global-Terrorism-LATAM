@@ -257,7 +257,7 @@ terror_selected_filtered$iso2c <- countrycode(terror_selected_filtered$country_t
 feriado_sel <- feriado %>% select(date=startDate,iso2c=Country,Type) %>% filter(Type=="public")
 
 terror_selected_filtered$id <- seq(1,nrow(terror_selected_filtered))
-  
+
 terror_selected_filteredmk=left_join(terror_selected_filtered,feriado_sel,by=c("iso2c","date"))
 
 terror_selected_filtered <- terror_selected_filteredmk %>% distinct(id, .keep_all = TRUE)
@@ -306,6 +306,7 @@ dados_amvox <- terror_selected_filtered_plus
 dados_amvox$TimeDifference_city_event <- as.numeric(dados_amvox$TimeDifference_city_event)
 dados_amvox$TimeDifference_country_event <- as.numeric(dados_amvox$TimeDifference_country_event)
 dados_amvox$TimeDifference_province_event <- as.numeric(dados_amvox$TimeDifference_province_event)
+dados_amvox$SP.POP.GROW <- as.character(dados_amvox$SP.POP.GROW)
 
 
 write_sheet(dados_amvox,"https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit?usp=sharing",sheet = "dados")
