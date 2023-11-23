@@ -8,8 +8,8 @@ quantis=quantile(as.numeric(dados$`P (success=1)`),c(0,.10,.20,.30,.40,.50,.60,.
 
 dados$categorias=NULL
 dados$`P (success=1)` <- as.numeric(dados$`P (success=1)`)
-dados$categorias[dados$`P (success=1)`<=0.06] <- 100
-dados$categorias[dados$`P (success=1)`>0.06&dados$`P (success=1)`<=0.09] <- 90
+dados$categorias[dados$`P (success=1)`<=0.07] <- 100
+dados$categorias[dados$`P (success=1)`>0.07&dados$`P (success=1)`<=0.09] <- 90
 dados$categorias[dados$`P (success=1)`>0.09&dados$`P (success=1)`<=0.11] <- 80
 dados$categorias[dados$`P (success=1)`>0.11&dados$`P (success=1)`<=0.14] <- 70
 dados$categorias[dados$`P (success=1)`>0.14&dados$`P (success=1)`<=0.16] <- 60
