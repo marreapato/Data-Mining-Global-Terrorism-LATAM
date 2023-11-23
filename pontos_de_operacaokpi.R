@@ -26,6 +26,9 @@ dados$nwound <- as.numeric(dados$nwound)
 dados$nperpcap <- as.numeric(dados$nperpcap)
 dados$nhostkid <- as.numeric(dados$nhostkid)
 
-df <- dados %>% group_by(categorias) %>% summarise(mortes=sum(nkill,na.rm=T),refens=sum(nhostkid,na.rm=T),perpcap=sum(nperpcap,na.rm=T),feridos=sum(nwound,na.rm=T),mortester=sum(nkillter,na.rm=T),scoremax=max(round(`P (success=1)`,3)))
+df <- dados %>% group_by(categorias) %>% summarise(mortes=sum(nkill,na.rm=T),refens=sum(nhostkid,na.rm=T),perpcap=sum(nperpcap,na.rm=T),feridos=sum(nwound,na.rm=T),mortester=sum(nkillter,na.rm=T),scoremin=min(round(`P (success=1)`,3)))
 
 plot(df$categorias,df$refens,type="l")
+
+
+write_sheet(df,"https://docs.google.com/spreadsheets/d/1p01w5mzwlKTcMhwyVpYDPNReN7oYkTfPoLCnhysRm0g/edit#gid=1741817179",sheet = "scores_kpis")
