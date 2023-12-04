@@ -82,3 +82,9 @@ table(dadocapgr08mimil$success)/nrow(dadocapgr08mimil)
 
 dadocapgr08mimilfr <- dadocapgr08mimil %>% filter(weekday=="Friday")
 table(dadocapgr08mimilfr$success)/nrow(dadocapgr08mimilfr)
+#rule 6 made already in slide
+
+#rule 7
+
+dadocapatqp<- dadocapgr1 %>% filter(ataque_ult_ano_pais==0)
+table(dadocapatqp$success)/nrow(dadocapatqp)
