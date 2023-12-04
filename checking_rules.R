@@ -44,3 +44,26 @@ table(dadocapgr1820atqth$success)/nrow(dadocapgr1820atqth)
 
 dadocapgr1820atqthele <- dadocapgr1820atqth %>% filter(eleicaonacionaldireta==1)
 table(dadocapgr1820atqthele$success)/nrow(dadocapgr1820atqthele)
+
+#4 regra
+
+dado30higheratqp <- dado30higher %>% filter(ataque_ult_ano_pais==1)
+table(dado30higheratqp$success)/nrow(dado30higheratqp)
+
+dado30higheratqpwed <- dado30higheratqp %>% filter(weekday=="Wednesday")
+table(dado30higheratqpwed$success)/nrow(dado30higheratqpwed)
+
+dado30higheratqpwedatq <- dado30higheratqpwed %>% filter(ataque_ult_ano_provincia==1)
+table(dado30higheratqpwedatq$success)/nrow(dado30higheratqpwedatq)
+
+dado30higheratqpwedatqcit <- dado30higheratqpwedatq %>% filter(CidadeOuCapital==0)
+table(dado30higheratqpwedatqcit$success)/nrow(dado30higheratqpwedatqcit)
+
+dado30higheratqpwedatqcitnel <- dado30higheratqpwedatqcit %>% filter(eleicaonacionaldireta==0)
+table(dado30higheratqpwedatqcitnel$success)/nrow(dado30higheratqpwedatqcitnel)
+
+dado30higheratqpwedatqcitnelatqc <- dado30higheratqpwedatqcitnel %>% filter(tempo_rel_ultimo_atk_city_ano=="1 ano ou menos")
+table(dado30higheratqpwedatqcitnelatqc$success)/nrow(dado30higheratqpwedatqcitnelatqc)
+
+dado30higheratqpwedatqcitnelatqcfer <- dado30higheratqpwedatqcitnelatqc %>% filter(feriado_oucomemo==0)
+table(dado30higheratqpwedatqcitnelatqcfer$success)/nrow(dado30higheratqpwedatqcitnelatqcfer)
