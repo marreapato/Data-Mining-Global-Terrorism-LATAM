@@ -67,3 +67,18 @@ table(dado30higheratqpwedatqcitnelatqc$success)/nrow(dado30higheratqpwedatqcitne
 
 dado30higheratqpwedatqcitnelatqcfer <- dado30higheratqpwedatqcitnelatqc %>% filter(feriado_oucomemo==0)
 table(dado30higheratqpwedatqcitnelatqcfer$success)/nrow(dado30higheratqpwedatqcitnelatqcfer)
+
+#rule 5
+
+dadocapgr0 <- dadocap %>% filter(popgrow_higher_than_latam==0)
+table(dadocapgr0$success)/nrow(dadocapgr0)
+
+dadocapgr08mi <- dadocapgr0 %>% filter(tamanho_pais=="menor ou igual a 8mi")
+table(dadocapgr08mi$success)/nrow(dadocapgr08mi)
+
+
+dadocapgr08mimil <- dadocapgr08mi %>% filter(ChefedeGovernoMilitar==0)
+table(dadocapgr08mimil$success)/nrow(dadocapgr08mimil)
+
+dadocapgr08mimilfr <- dadocapgr08mimil %>% filter(weekday=="Friday")
+table(dadocapgr08mimilfr$success)/nrow(dadocapgr08mimilfr)
