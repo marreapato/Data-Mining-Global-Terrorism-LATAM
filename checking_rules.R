@@ -88,3 +88,15 @@ table(dadocapgr08mimilfr$success)/nrow(dadocapgr08mimilfr)
 
 dadocapatqp<- dadocapgr1 %>% filter(ataque_ult_ano_pais==0)
 table(dadocapatqp$success)/nrow(dadocapatqp)
+
+dadocapatqp8mi<- dadocapatqp %>% filter(tamanho_pais=="menor ou igual a 8mi")
+table(dadocapatqp8mi$success)/nrow(dadocapatqp8mi)
+
+dadocapatqp8mimil<- dadocapatqp8mi %>% filter(ChefedeGovernoMilitar==0)
+table(dadocapatqp8mimil$success)/nrow(dadocapatqp8mimil)
+
+dadocapatqp8mimilcit <- dadocapatqp8mimil %>% filter(tempo_rel_ultimo_atk_city_ano=="2 a 9 anos")
+table(dadocapatqp8mimilcit$success)/nrow(dadocapatqp8mimilcit)
+
+dadocapatqp8mimilcitele <- dadocapatqp8mimilcit %>% filter(eleicaonacionaldireta==0)
+table(dadocapatqp8mimilcitele$success)/nrow(dadocapatqp8mimilcitele)
