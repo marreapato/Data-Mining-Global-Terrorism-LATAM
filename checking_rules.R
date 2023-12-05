@@ -143,3 +143,27 @@ table(dado30higher1an$success)/nrow(dado30higher1an)
 
 dado30higher1anatq <- dado30higher1an %>% filter(ataque_ult_ano_provincia==1)
 table(dado30higher1anatq$success)/nrow(dado30higher1anatq)
+
+
+#rule 12 done
+
+#rule 13
+
+
+dado30higheratqpcap0 <- dado30higheratqp %>% filter(CidadeOuCapital==0)
+table(dado30higheratqpcap0$success)/nrow(dado30higheratqpcap0)
+
+dado30higheratqpcap0ele <- dado30higheratqpcap0 %>% filter(eleicaonacionaldireta==1)
+table(dado30higheratqpcap0ele$success)/nrow(dado30higheratqpcap0ele)
+
+dado30higheratqpcap0eleprv <- dado30higheratqpcap0ele %>% filter(ataque_ult_ano_provincia==0)
+table(dado30higheratqpcap0eleprv$success)/nrow(dado30higheratqpcap0eleprv)
+
+#rule 14
+
+dadocapgr1820wed <- dadocapgr1820 %>% filter(weekday=="Wednesday")
+table(dadocapgr1820wed$success)/nrow(dadocapgr1820wed)
+
+
+dadocapgr1820wedatq <- dadocapgr1820wed %>% filter(ataque_ult_ano_pais==1)
+table(dadocapgr1820wedatq$success)/nrow(dadocapgr1820wedatq)
