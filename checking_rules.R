@@ -135,3 +135,11 @@ table(dado30higheratqpwsat1menprv$success)/nrow(dado30higheratqpwsat1menprv)
 
 dado30higheratqpwsat1menprvcit <- dado30higheratqpwsat1menprv %>% filter(CidadeOuCapital==1)
 table(dado30higheratqpwsat1menprvcit$success)/nrow(dado30higheratqpwsat1menprvcit)
+
+#rule 11
+
+dado30higher1an <- dado30higher %>% filter(tempo_rel_ultimo_atk_city_ano=="1 ano ou menos")
+table(dado30higher1an$success)/nrow(dado30higher1an)
+
+dado30higher1anatq <- dado30higher1an %>% filter(ataque_ult_ano_provincia==1)
+table(dado30higher1anatq$success)/nrow(dado30higher1anatq)
