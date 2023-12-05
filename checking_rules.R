@@ -100,3 +100,38 @@ table(dadocapatqp8mimilcit$success)/nrow(dadocapatqp8mimilcit)
 
 dadocapatqp8mimilcitele <- dadocapatqp8mimilcit %>% filter(eleicaonacionaldireta==0)
 table(dadocapatqp8mimilcitele$success)/nrow(dadocapatqp8mimilcitele)
+
+#rule 8
+
+dado30highereletu <- dado30higherele %>% filter(weekday=="Tuesday")
+table(dado30highereletu$success)/nrow(dado30highereletu)
+
+dado30highereletu10mais <- dado30highereletu %>% filter(tempo_rel_ultimo_atk_city_ano=="10 anos ou mais")
+table(dado30highereletu10mais$success)/nrow(dado30highereletu10mais)
+
+
+#rule 9
+
+
+dadocapatqpmil<- dadocapatqp %>% filter(ChefedeGovernoMilitar==0)
+table(dadocapatqpmil$success)/nrow(dadocapatqpmil)
+
+dadocapatqpmil8mi<- dadocapatqpmil %>% filter(tamanho_pais=="menor ou igual a 8mi")
+table(dadocapatqpmil8mi$success)/nrow(dadocapatqpmil8mi)
+
+dadocapatqpmil8miwee <- dadocapatqpmil8mi %>% filter(weekday=="Tuesday")
+table(dadocapatqpmil8miwee$success)/nrow(dadocapatqpmil8miwee)
+
+#rule 10
+
+dado30higheratqpwsat <- dado30higheratqp %>% filter(weekday=="Saturday")
+table(dado30higheratqpwsat$success)/nrow(dado30higheratqpwsat)
+
+dado30higheratqpwsat1men <- dado30higheratqpwsat %>% filter(tempo_rel_ultimo_atk_city_ano=="1 ano ou menos")
+table(dado30higheratqpwsat1men$success)/nrow(dado30higheratqpwsat1men)
+
+dado30higheratqpwsat1menprv <- dado30higheratqpwsat1men %>% filter(ataque_ult_ano_provincia==1)
+table(dado30higheratqpwsat1menprv$success)/nrow(dado30higheratqpwsat1menprv)
+
+dado30higheratqpwsat1menprvcit <- dado30higheratqpwsat1menprv %>% filter(CidadeOuCapital==1)
+table(dado30higheratqpwsat1menprvcit$success)/nrow(dado30higheratqpwsat1menprvcit)
