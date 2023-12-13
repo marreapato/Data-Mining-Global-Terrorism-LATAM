@@ -8,6 +8,14 @@ para identificar fatores associados ao sucesso ou fracasso no combate a ataques 
 
 [Categorização para Discussão de Colunas](https://docs.google.com/document/d/1N_wlQe09FwuMtrLqvffWfsGjZydI7bDjnUkyN1y92N4/edit?usp=sharing)
 
-
 [Planilha de Artigos e Literatura](https://docs.google.com/spreadsheets/d/1-RdvLGwixrCfm9mDJd3DG8yOw0WFIPZi_hydZfRgOL4/edit?usp=sharing)
+
+[Dados](https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit#gid=587864036)
+
+[DataMart](https://docs.google.com/spreadsheets/d/1aXMHsjPRV39VNZNo6kS6jU3FkGrysVV_sukEQz_1Cso/edit#gid=0)
+
+[KPIs](https://docs.google.com/spreadsheets/d/19gj4KdpuyoUhdHa77sLSxh5dut5Qshsqbq06UWon_Ys/edit#gid=353932470)
+
+[Apresentação](https://docs.google.com/presentation/d/141zi0sUzdnzKpSh2uZtMI7pIPQB5LIeS5BpcS81yFgk/edit?usp=sharing)
+
 
