@@ -18,4 +18,5 @@ para identificar fatores associados ao sucesso ou fracasso no combate a ataques 
 
 [Apresentação](https://docs.google.com/presentation/d/141zi0sUzdnzKpSh2uZtMI7pIPQB5LIeS5BpcS81yFgk/edit?usp=sharing)
 
+Os Scripts etão ordenados na ordem sugerida, no entanto eles foram apenas utilizados para construir a planilha de [dados](https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit#gid=587864036) que já está disponibilizada no [link](https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit#gid=587864036).
 
