@@ -1,4 +1,4 @@
-# Data-Mining-Global-Terrorism-LATAM
+# Terrorismo Na América Latina
 
 Trabalho da disciplina de Mineração de Dados - Mestrado Acadêmico do CIN UFPE
 
@@ -21,3 +21,44 @@ para identificar fatores associados ao sucesso ou fracasso no combate a ataques 
 
 Os Scripts etão ordenados na ordem sugerida, no entanto eles foram apenas utilizados para construir a planilha de [dados](https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit#gid=587864036) que já está disponibilizada no [link](https://docs.google.com/spreadsheets/d/1priwDe7UXDmy9nzbXKZTDhQG9_NOB6FZafhcmQLOTfU/edit#gid=587864036).
 
+# Global Terrorism Database na América Latina
+
+## Introdução
+O terrorismo é uma ameaça global que impacta a estabilidade de países e regiões. O Global Terrorism Database (GTD), desenvolvido pelo START - Study of Terrorism and Responses to Terrorism, é um banco de dados abrangente com mais de 200.000 registros de incidentes terroristas em todo o mundo desde 1970 \cite{codebook}. Este projeto se concentra na América Latina, explorando como a mineração de dados pode ser uma ferramenta eficaz para apoiar as autoridades antiterrorismo na região.
+
+## Objetivo
+O objetivo principal é analisar 10.000 incidentes terroristas em 19 países da América Latina, utilizando o GTD. A abordagem inclui a aplicação de técnicas de mineração de dados e Descoberta do Conhecimento em Bases de Dados (KDD) para fornecer insights que auxiliem as autoridades na tomada de decisões estratégicas e táticas.
+
+## Materiais e Métodos
+### Base de Dados
+- Utilização da base de dados do GTD fornecida pelo START.
+- Amostra de 10.000 incidentes em 19 países da América Latina.
+- Variáveis incluem informações sobre data, tipo de ataque, grupo perpetrador, tipo de alvo e sucesso do ataque.
+
+### Processo de Mineração
+- Utilização do modelo CRISP-DM (CRoss Industry Standard Process for Data Mining).
+- Linguagens de programação: R para limpeza e seleção de amostra, Python para análises estatísticas e Javascript para informações sobre feriados.
+
+### Coleta de Informações
+- Integração de dados do Banco Mundial para informações socioeconômicas.
+- Utilização da biblioteca date-holidays para dados sobre feriados públicos.
+- Construção de Datamart para informações específicas de cada país.
+
+### Variáveis do Dataset
+- Descrição detalhada das variáveis, incluindo sucesso do combate, número de mortes, feridos, reféns, entre outras.
+
+### Modelos Utilizados
+- Árvores de decisão e algoritmo JRip para extração de conhecimento.
+- Regressão logística para suporte à decisão.
+- Métricas de avaliação incluem Lift, Confiança e Cobertura.
+
+## KNIME
+- Utilização da ferramenta KNIME para implementação dos modelos.
+- Workflow inclui fluxos para a regressão logística e regras de indução.
+
+## Resultados
+- Fornecimento de insights sobre padrões de ataques terroristas na América Latina.
+- Avaliação da eficácia de medidas antiterrorismo com base nas análises.
+
+## Conclusão
+Este projeto destaca a importância da mineração de dados na análise de incidentes terroristas na América Latina, fornecendo suporte à tomada de decisões das autoridades antiterrorismo. A utilização do GTD e técnicas avançadas de análise demonstram ser ferramentas valiosas para compreender e combater ameaças terroristas na região.
