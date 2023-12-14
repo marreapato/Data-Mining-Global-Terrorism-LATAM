@@ -1,4 +1,5 @@
-# DM_ML_Binary_answer
+# Data-Mining-Global-Terrorism-LATAM
+
 Trabalho da disciplina de Mineração de Dados - Mestrado Acadêmico do CIN UFPE
 
 Este estudo aborda a aplicacão de mineracão de dados para apoiar decisões no combate ao terrorismo na América Latina.
